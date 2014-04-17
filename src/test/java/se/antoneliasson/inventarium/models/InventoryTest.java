@@ -24,8 +24,9 @@ public class InventoryTest {
     
     @Before
     public void setUp() {
-        inventory = new Inventory();
-        lookup = new ItemLookup();
+        Database db = new Database("test.sqlite");
+        inventory = new Inventory(db);
+        lookup = new ItemLookup(db);
     }
     
     @After

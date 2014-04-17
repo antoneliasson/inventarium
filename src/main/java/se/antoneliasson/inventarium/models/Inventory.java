@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Inventory {
-    private Map<Product, Integer> products;
+    private final Database db;
+    private final Map<Product, Integer> products;
     
-    public Inventory() {
+    public Inventory(Database db) {
+        this.db = db;
         products = new HashMap<>();
     }
     

@@ -1,14 +1,15 @@
 package se.antoneliasson.inventarium.models;
 
+import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-public class ItemLookupTest {
-    ItemLookup fixture;
+public class DatabaseTest {
+    private Database fixture;
     
     @BeforeClass
     public static void setUpClass() {
@@ -20,8 +21,7 @@ public class ItemLookupTest {
     
     @Before
     public void setUp() {
-        Database db = new Database("test.sqlite");
-        fixture = new ItemLookup(db);
+        fixture = new Database("test.sqlite");
     }
     
     @After
@@ -29,9 +29,9 @@ public class ItemLookupTest {
     }
 
     @Test
-    public void lookupItem() {
+    public void findProduct() {
         GTIN gtin = new GTIN(12345);
-        Product product = fixture.get(gtin);
-        assertNotNull(product);
+        Map<String, String> row = fixture.lookupProduct(gtin);
+        assertNotNull(row);
     }
 }
